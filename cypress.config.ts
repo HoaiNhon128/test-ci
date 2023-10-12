@@ -15,5 +15,20 @@ export default defineConfig({
 				: 'https://data-api-2-auth-staging.aquabyte.ai',
 	},
 
+	video: false,
+	chromeWebSecurity: false,
+	reporter: 'mochawesome',
+	reporterOptions: {
+		overwrite: 'false',
+		reportPageTitle: 'Automated Test Status',
+		reportTitle: 'Automated Test Reporting Dashboard',
+		showPassed: 'true',
+		autoOpen: 'false',
+		charts: 'true',
+		code: 'false',
+		inline: true,
+		reportDir: 'cypress/reports',
+	},
+
 	// specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
 });
