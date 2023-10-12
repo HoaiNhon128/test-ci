@@ -1,0 +1,19 @@
+{
+	"name": "aquabyte-e2e",
+	"version": "1.0.0",
+	"license": "MIT",
+	"private": true,
+	"packageManager": "yarn@3.6.4",
+	"scripts": {
+		"merge:reports": "mochawesome-merge mochawesome-report/*.json > cypress-combined-report.json",
+		"create:html:report": "npm run merge:reports && marge --reportDir TestReport cypress-combined-report.json"
+	},
+	"devDependencies": {
+		"cypress": "^13.3.0"
+	},
+	"dependencies": {
+		"@badeball/cypress-cucumber-preprocessor": "^18.0.6",
+		"multiple-cucumber-html-reporter": "^3.5.0",
+		"typescript": "^5.2.2"
+	}
+}
