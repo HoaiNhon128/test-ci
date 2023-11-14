@@ -3,3 +3,6 @@ node_modules
 .yarn/install-state.gz
 
 cypress/*
+reports/*
+.DS_Store
+cucumber-messages.ndjson

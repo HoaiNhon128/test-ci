@@ -14,6 +14,19 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
+import { apiAlias } from '@common';
 import './commands';
 
-beforeEach(function () {});
+const initTests = async () => {
+	const { CURRENT_EVENT, GET_USER_DATA, LATEST_IMAGE, OVERVIEW } = apiAlias;
+	cy.intercept('/api/v1/getUserData').as(GET_USER_DATA);
+	cy.intercept('/api/v1/sites/overview?*').as(OVERVIEW);
+
+	cy.intercept('/api/v2/liveImages/latest').as(LATEST_IMAGE);
+	cy.intercept('api/v1/eventLogs/current').as(CURRENT_EVENT);
+};
+
+beforeEach(() => {
+	// eslint-disable-next-line cypress/no-unnecessary-waiting
+	initTests();
+});

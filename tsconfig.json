@@ -14,8 +14,13 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"resolveJsonModule": true,
-		"baseUrl": "."
+		"baseUrl": ".",
+		"paths": {
+			"@utils": ["./src/utils/index.ts"],
+			"@common": ["./src/common/index.ts"]
+		}
 	},
+
 	"exclude": ["node_modules"],
-	"include": ["./src/**/*.ts"]
+	"include": ["./src/**/*.ts", "cypress.config.ts"]
 }
