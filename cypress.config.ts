@@ -5,11 +5,13 @@ import { defineConfig } from 'cypress';
 import fs from 'fs';
 import path from 'path';
 import { getReportMetadata } from './scripts/get-report-metadata';
+const dotenv = require('dotenv').config();
 
 async function setupNodeEvents(
 	on: Cypress.PluginEvents,
 	config: Cypress.PluginConfigOptions
 ): Promise<Cypress.PluginConfigOptions> {
+	config.env = dotenv.parsed;
 	// This is required for the preprocessor to be able to generate JSON reports after each run, and more,
 	await addCucumberPreprocessorPlugin(on, config);
 	on(
@@ -21,6 +23,7 @@ async function setupNodeEvents(
 					alias: {
 						'@utils': path.resolve(__dirname, 'src/utils/index.ts'),
 						'@common': path.resolve(__dirname, 'src/common/index.ts'),
+						'@config': path.resolve(__dirname, 'src/config/index.ts'),
 					},
 				},
 				module: {
@@ -51,7 +54,10 @@ async function setupNodeEvents(
 
 	on('after:run', async (results: any) => {
 		await afterRunHandler(config);
+
 		getReportMetadata(results);
+
+		return results;
 	});
 
 	// Make sure to return the config object as it might have been modified by the plugin.
@@ -70,12 +76,6 @@ export default defineConfig({
 		defaultCommandTimeout: 60000,
 		pageLoadTimeout: 60000,
 		video: false,
-	},
-	env: {
-		AUTH_API_URL:
-			process.env.ENV === 'production'
-				? 'https://data-api-2-auth-staging.aquabyte.ai'
-				: 'https://data-api-2-auth-staging.aquabyte.ai',
 	},
 
 	video: false,

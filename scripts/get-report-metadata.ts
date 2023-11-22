@@ -39,7 +39,7 @@ export const getReportMetadata = (result: Record<string, any>) => {
 		jsonDir: './reports/',
 		reportPath: directoryPath,
 		customMetadata: true,
-		pageFooter: ``,
+		pageFooter: `Footer`,
 		pageTitle: 'Aquabyte E2E Reports',
 		reportName: 'Aquabyte E2E Reports',
 		displayReportTime: true,

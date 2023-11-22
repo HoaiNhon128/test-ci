@@ -21,14 +21,39 @@ export const getUserData = () => {
 };
 
 export const getDataApi = async (alias: string) => {
+	const newAlias = alias.startsWith('@') ? alias : `@${alias}`;
 	return new Promise<any>((resolve, reject) => {
-		cy.get<Interception>(`@${alias}`, { timeout: 40000 }).then((currentSubject) => {
+		cy.get<Interception>(newAlias, { timeout: 40000 }).then((currentSubject) => {
 			if (currentSubject?.response?.statusCode < 400) {
 				return resolve(currentSubject.response.body);
 			}
 			return resolve(null);
 		});
 	});
+};
+
+export const bootstrapDataApi = async (
+	params: Array<{ alias: string; key: string }>,
+	option?: { isUserData?: boolean; isSearch?: boolean }
+) => {
+	const promises = await Promise.all(params.map((item) => getDataApi(item.alias)));
+
+	const result = params.reduce((prev, curr, index) => {
+		prev[curr.key] = promises[index];
+		return prev;
+	}, {});
+
+	if (option) {
+		if (option.isUserData) {
+			result['userData'] = await getUserData();
+		}
+
+		if (option.isSearch) {
+			result['search'] = await parseUrl();
+		}
+	}
+
+	return result as any;
 };
 
 export const parseUrl: any = () => {

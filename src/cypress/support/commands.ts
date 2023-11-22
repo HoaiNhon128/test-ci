@@ -4,9 +4,22 @@ Cypress.on('uncaught:exception', (e) => {
 	return false;
 });
 
-Cypress.on('fail', (err, runnable) => {
-	cy.log('error', err.message);
+Cypress.Commands.add('waitApi', (alias) => {
+	const isStart = alias.startsWith('@');
+	const newAlias = isStart ? alias : `@${alias}`;
+	cy.wait(newAlias);
+});
 
-	cy.log('runnable', runnable.titlePath());
-	throw err;
+Cypress.Commands.add('getDataTestId', (id) => {
+	return cy.get(`[data-testid="${id}"]`);
+});
+
+Cypress.Commands.add('detectImageWithUrl', (url) => {
+	return cy.request({ url, failOnStatusCode: false }).then((response) => {
+		if (response.status === 200) {
+			return true;
+		} else {
+			return false;
+		}
+	});
 });

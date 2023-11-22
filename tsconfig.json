@@ -17,10 +17,12 @@
 		"baseUrl": ".",
 		"paths": {
 			"@utils": ["./src/utils/index.ts"],
-			"@common": ["./src/common/index.ts"]
+			"@common": ["./src/common/index.ts"],
+			"@config": ["./src/config/index.ts"],
+			"@apps/*": ["./src/*"]
 		}
 	},
 
 	"exclude": ["node_modules"],
-	"include": ["./src/**/*.ts", "cypress.config.ts"]
+	"include": ["./src/**/*.ts", "cypress.config.ts", "src/languages/en.tsx"]
 }

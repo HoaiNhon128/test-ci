@@ -3,6 +3,10 @@ export const apiAlias = {
 	OVERVIEW: 'OVERVIEW',
 	GET_USER_DATA: 'GET_USER_DATA',
 	LATEST_IMAGE: 'LATEST_IMAGE',
+	PEN_LIGHT_SCHEDULES: 'PEN_LIGHT_SCHEDULES',
+	LIVE_IMAGES_UPDATED_TIME: 'LIVE_IMAGES_UPDATED_TIME',
+	WINCH_CONTROL: 'WINCH_CONTROL',
+	WINCH_METADATA: 'WINCH_METADATA',
 };
 
 export const getAlias = <K extends keyof typeof apiAlias>(key: K | string): string => {

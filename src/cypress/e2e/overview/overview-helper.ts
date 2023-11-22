@@ -1,6 +1,11 @@
+import { apiAlias, getAlias } from '@common';
+import { bootstrapDataApi, getDataApi, parseUrl, strings, toLocaleFixed } from '@utils';
+import { get } from 'lodash';
+
 import { CameraPositionEventTypes } from '@common';
 import { sortBy } from 'lodash';
 import moment from 'moment-timezone';
+import axios from 'axios';
 
 export const CROP_CONVERTER = [
 	0, 0.0003666206359863281, 0.0008585536956787109, 0.0014658849716186523, 0.002112079620361328, 0.0028086023330688476,
@@ -139,4 +144,96 @@ export const getHighestPriorityOngoingEventLogForPen = (
 	// Reverse the array since the sort is in ascending order of the above conditions
 	// when we actually want the descending order results: 1 [true] and by latest `startedAtInTimezone`
 	return sortedOngoingPenAndSiteWideEvents.reverse()[0];
+};
+
+export const detectImageWithUrl = (url: string = '') => {
+	return new Cypress.Promise((resolve) => {
+		if (!url) {
+			return resolve(false);
+		}
+		cy.request({ url, failOnStatusCode: false, timeout: 1000000 }).then((response) => {
+			if (response.status === 200) {
+				resolve(true);
+			} else {
+				resolve(false);
+			}
+		});
+	});
+};
+
+export const isInactiveCamera = (latestImageForPen) => {
+	if (!latestImageForPen) {
+		return null;
+	}
+	const MAX_NUM_MINUTES_FOR_ACTIVE = 3 * 24 * 60;
+
+	return moment().diff(moment(latestImageForPen.capturedAt), 'minutes') > MAX_NUM_MINUTES_FOR_ACTIVE;
+};
+
+export const getLightSchedule = (
+	penlightSchedules: { endTimeInTimezone: string; startTimeInTimezone: string; isActive: boolean },
+	siteTimezone: string
+) => {
+	if (!penlightSchedules) {
+		return {};
+	}
+	const { startTimeInTimezone, endTimeInTimezone, isActive } = penlightSchedules;
+	const isNextDay = startTimeInTimezone > endTimeInTimezone;
+	const currentTime = moment().tz(siteTimezone).format('HH:mm:ss');
+
+	let isLightSchedule = false;
+	let tooltipLabel = '';
+
+	if (isActive) {
+		if (endTimeInTimezone === startTimeInTimezone) {
+			tooltipLabel = strings.lightSchedules24Hours;
+			isLightSchedule = true;
+			return {
+				isLightSchedule,
+				tooltipLabel,
+			};
+		}
+
+		if (isNextDay && currentTime < endTimeInTimezone) {
+			tooltipLabel = strings.formatString(strings.lightSchedulesOn, startTimeInTimezone, endTimeInTimezone);
+			isLightSchedule = true;
+
+			return {
+				isLightSchedule,
+				tooltipLabel,
+			};
+		}
+
+		if (currentTime >= startTimeInTimezone && currentTime < endTimeInTimezone) {
+			tooltipLabel = strings.formatString(strings.lightSchedulesOn, startTimeInTimezone, endTimeInTimezone);
+			isLightSchedule = true;
+			return {
+				isLightSchedule,
+				tooltipLabel,
+			};
+		}
+
+		if (currentTime >= startTimeInTimezone && currentTime >= endTimeInTimezone && isNextDay) {
+			tooltipLabel = strings.formatString(strings.lightSchedulesOn, startTimeInTimezone, endTimeInTimezone);
+			isLightSchedule = true;
+			return {
+				isLightSchedule,
+				tooltipLabel,
+			};
+		}
+
+		tooltipLabel = strings.formatString(strings.lightSchedulesOff, startTimeInTimezone, endTimeInTimezone);
+		isLightSchedule = false;
+		return {
+			isLightSchedule,
+			tooltipLabel,
+		};
+	} else {
+		isLightSchedule = false;
+		tooltipLabel = '';
+		return {
+			isLightSchedule,
+			tooltipLabel,
+		};
+	}
 };
