@@ -184,7 +184,7 @@ Then('Current events will be displayed', () => {
 				eventType = currentEvent.eventType;
 			}
 
-			const currentEventLabel = eventType ? dataByEventType[eventType].label : 'N/';
+			const currentEventLabel = eventType ? dataByEventType[eventType].label : 'N/A';
 
 			cy.get(`.footer-control-event-log`)
 				.eq(index)
