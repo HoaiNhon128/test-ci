@@ -19,15 +19,15 @@ import {
 	getTiltInformation,
 	getTiltValue,
 	isInactiveCamera,
-} from './overview-helper';
+} from '../overview-helper';
 
 Before({ tags: '@cameraOverview' }, () => {
 	loginInternalUser();
 });
 
-After({ tags: '@cameraOverview' }, () => {
-	// cy.get('[data-testid="test-mc"] > span').should('have.length.gt', 0).last().click({ force: true });
-});
+// After({ tags: '@cameraOverview' }, () => {
+// 	// cy.get('[data-testid="test-mc"] > span').should('have.length.gt', 0).last().click({ force: true });
+// });
 
 When('Visit page camera overview siteId: {string}', (siteId) => {
 	Cypress.config('defaultCommandTimeout', 2000);
@@ -154,7 +154,6 @@ When('Deselect all pen', () => {
 });
 
 Then('{string} must be displayed when no pen is selected', (string: string) => {
-	cy.log('pen', string);
 	cy.contains(string, { timeout: 2000 }).should('be.visible');
 });
 
@@ -185,14 +184,16 @@ Then('Current events will be displayed', () => {
 				eventType = currentEvent.eventType;
 			}
 
-			const currentEventLabel = eventType ? dataByEventType[eventType].label : 'N/A';
+			const currentEventLabel = eventType ? dataByEventType[eventType].label : 'N/';
 
 			cy.get(`.footer-control-event-log`)
 				.eq(index)
 				.find('span')
 				.last()
 				.invoke('text')
-				.should('equal', currentEventLabel);
+				.then((value) => {
+					expect(value).to.equal(currentEventLabel);
+				});
 		});
 	};
 
@@ -286,16 +287,20 @@ Then(
 								index + 1
 							}) .live-image-container`;
 							cy.get(`${liveImagesSelector} > div:nth-child(1)`);
+
 							const dataTestId = isLightSchedule ? 'light-bulb-union' : 'light-bulb-off-union';
 							cy.get(`${liveImagesSelector} [data-testid="${dataTestId}"]`)
 								.scrollIntoView()
 								.should('be.visible')
 								.trigger('mouseenter')
 								.invoke('show');
+
 							cy.get(`${liveImagesSelector} [data-testid="${dataTestId}"]`).trigger('mouseleave');
 							cy.get('[data-tippy-root] .tippy-content > div').invoke('text').should('equal', tooltipLabel);
+
 							const capturedAtMoment = moment(latestImageForPen.capturedAt);
 							const numMinutesSinceLastImage = now.diff(capturedAtMoment, 'minutes');
+
 							if (numMinutesSinceLastImage > 15) {
 								cy.waitApi(apiAlias.LIVE_IMAGES_UPDATED_TIME);
 								const latestUpdateImage = await getDataApi(apiAlias.LIVE_IMAGES_UPDATED_TIME);
@@ -310,12 +315,15 @@ Then(
 									cy.get(`${liveImagesSelector} > div:nth-child(1) > div:nth-child(1) > div > span`)
 										.scrollIntoView()
 										.should('be.visible');
+
 									cy.get(`${liveImagesSelector} > div:nth-child(1) > div:nth-child(1) > div > span`)
 										.trigger('mouseenter')
 										.invoke('show');
+
 									cy.get('[data-tippy-root] .tippy-content > div')
 										.invoke('text')
 										.should('equal', strings.cameraConnectivityIssues);
+
 									cy.get(`${liveImagesSelector} > div:nth-child(1) > div:nth-child(1) > div > span`).trigger(
 										'mouseleave'
 									);

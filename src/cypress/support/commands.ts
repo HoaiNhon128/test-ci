@@ -1,5 +1,3 @@
-import { error } from 'console';
-
 Cypress.on('uncaught:exception', (e) => {
 	return false;
 });

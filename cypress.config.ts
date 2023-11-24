@@ -53,6 +53,12 @@ async function setupNodeEvents(
 	);
 
 	on('after:run', async (results: any) => {
+		fs.rmdir(path.resolve(__dirname, 'reports'), (err) => {
+			if (err) {
+				console.log('Error');
+			}
+		});
+
 		await afterRunHandler(config);
 
 		getReportMetadata(results);
