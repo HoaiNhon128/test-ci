@@ -1,0 +1,8 @@
+{
+	"nameTxt": "//input[@placeholder='Name']",
+	"emailTxt": "//input[@placeholder='Email Address']",
+	"phoneNumberTxt": "//*[contains(text(),'Phone Number')]/parent::*/following-sibling::*//input[@type='text']",
+	"plaliDrd": "//*[contains(text(),'PLALI Role')]/parent::*/following-sibling::*//*[@class='ant-select-selector']",
+	"latiDrd": "//*[contains(text(),'LATI Role')]/parent::*/following-sibling::*//*[@class='ant-select-selector']",
+	"watiDrd": "//*[contains(text(),'WATI Role')]/parent::*/following-sibling::*//*[@class='ant-select-selector']"
+}

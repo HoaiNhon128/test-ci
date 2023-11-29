@@ -1,0 +1,8 @@
+{
+    "addCustomerBtn": "//button/*[contains(text(),'New Customer')]",
+    "nameTxt": "//input[@placeholder='Name']",
+    "searchTxt": "//input[@placeholder='Search...']",
+    "uploadInp": "//*[contains(@class,'upload-select-picture-card')]//input", 
+    "removeBtn": "//*[text()='Remove']/parent::*",
+    "uploadedImg": "//input[@id='logo']/following-sibling::img"
+}

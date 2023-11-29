@@ -1,0 +1,7 @@
+{
+    "emailTxt": "//input[@id='email']",
+    "passwordTxt": "//input[@id='password']",
+    "errorLbl": ".ab-error-message",
+    "errorTxbLbl": ".ant-form-item-explain-error",
+    "forgotPasswordLbt": ".ab-form-link"
+}

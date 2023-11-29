@@ -16,11 +16,13 @@
 // Import commands.js using ES2015 syntax:
 import { apiAlias } from '@common';
 import './commands';
+import './actions';
+import 'cypress-xpath';
+import 'cypress-file-upload';
 
 const initTests = async () => {
 	cy.intercept('/api/v1/getUserData').as(apiAlias.GET_USER_DATA);
 	cy.intercept('/api/v1/sites/overview?*').as(apiAlias.OVERVIEW);
-
 	cy.intercept('/api/v2/liveImages/latest').as(apiAlias.LATEST_IMAGE);
 	cy.intercept('/api/v1/eventLogs/current').as(apiAlias.CURRENT_EVENT);
 	cy.intercept('/api/v1/penLightSchedules/*').as(apiAlias.PEN_LIGHT_SCHEDULES);

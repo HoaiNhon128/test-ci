@@ -1,0 +1,4 @@
+{
+	"deleteBtn": "//span[normalize-space()='Delete']",
+	"confirmDeleteBtn": "//button[@type='button']//span[contains(text(),'Delete')]"
+}

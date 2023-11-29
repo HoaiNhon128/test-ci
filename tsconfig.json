@@ -4,7 +4,7 @@
 		"module": "commonjs",
 		"lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
 		"skipLibCheck": true,
-		"types": ["cypress"],
+		"types": ["cypress", "cypress-file-upload"],
 		"moduleResolution": "node",
 		"removeComments": true,
 		"noImplicitReturns": true,
@@ -16,13 +16,14 @@
 		"resolveJsonModule": true,
 		"baseUrl": ".",
 		"paths": {
+			"@apps/*": ["./src/*"],
+			"@locator/*": ["./src/locator/*"],
 			"@utils": ["./src/utils/index.ts"],
 			"@common": ["./src/common/index.ts"],
-			"@config": ["./src/config/index.ts"],
-			"@apps/*": ["./src/*"]
+			"@config": ["./src/config/index.ts"]
 		}
 	},
 
 	"exclude": ["node_modules"],
-	"include": ["./src/**/*.ts", "cypress.config.ts", "src/languages/en.tsx"]
+	"include": ["./src/**/*.ts", "./src/**/*.js", "cypress.config.ts"]
 }

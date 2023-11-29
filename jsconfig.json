@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"target": "es2017",
+		"module": "commonjs",
+
+		"paths": {
+			"@apps/*": ["./src/*"],
+			"@utils": ["./src/utils/index.ts"],
+			"@common": ["./src/common/index.ts"],
+			"@config": ["./src/config/index.ts"],
+			"@locator/*": ["./src/locator/*"]
+		}
+	},
+	"exclude": ["dist", "node_modules", "build"],
+	"typeAcquisition": {
+		"enable": true
+	}
+}

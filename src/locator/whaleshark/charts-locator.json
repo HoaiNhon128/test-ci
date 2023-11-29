@@ -1,0 +1,19 @@
+{
+	"cameraCharts": {
+		"page": "//a[@class='flex-auto pl1 nowrap ab-fs-lg' and contains(@href,'/dashboard/cameras/chart')]",
+		"fishDensity": "//div[@id='FISH_DENSITY' and contains(@class, 'mb1 flex-auto')]",
+		"fishAnalyzedforBiomass": "//div[@id='FISH_ANALYZED_FOR_BIOMASS' and contains(@class, 'mb1 flex-auto')]",
+		"depth": "//div[@id='DEPTH' and contains(@class, 'mb1 flex-auto')]",
+		"temperture": "//div[contains(@class, 'pill-medium ab-font-bold') and contains(text(), 'Temperature')]",
+		"tilt": "//div[contains(@class, 'pill-medium ab-font-bold') and contains(text(), 'Camera Tilt')]",
+		"tooltip": "//div[contains(@class, 'px2 pt1 overflow-y-scroll flex-auto flex flex-column chart-container')]//div[contains(@class, 'recharts-tooltip-wrapper')]"
+	},
+
+	"cameraChartsMenu": {
+		"fishDensity": "//div[contains(@class, 'pill-medium ab-font-bold') and contains(text(), 'Fish desity')]",
+		"fishAnalyzedforBiomass": "//div[contains(@class, 'pill-medium ab-font-bold') and contains(text(), 'Fish analyzed for biomass')]",
+		"temperature": "//div[contains(@class, 'pill-medium ab-font-bold') and contains(text(), 'Temperature')]",
+		"depth": "//div[contains(@class, 'pill-medium ab-font-bold') and contains(text(), 'Depth')]",
+		"tilt": "//div[contains(@class, 'pill-medium ab-font-bold') and contains(text(), 'Tilt')]"
+	}
+}
