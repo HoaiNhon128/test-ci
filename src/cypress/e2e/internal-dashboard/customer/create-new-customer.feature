@@ -1,3 +1,5 @@
+
+@create-customer
 Feature: 04 Create new customers
 
     Scenario: 001 Admin role create a customer account with logo
@@ -34,7 +36,7 @@ Feature: 04 Create new customers
         Then Verify page title 'Customers' is displayed
 
         When Click to 'New Customer' button
-        And Enter random fullname 'customer 2' to Name textbox
+        And Enter random customer 'customer 2' to Name textbox
         And Upload file 'customer-avt.jpeg' to Logo field
         And Click to Remove button
         Then Verify customer logo is removed

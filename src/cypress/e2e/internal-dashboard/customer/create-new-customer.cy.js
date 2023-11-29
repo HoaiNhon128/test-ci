@@ -1,6 +1,8 @@
-import { Given, When, And, Then } from '@badeball/cypress-cucumber-preprocessor';
+import { customerDataTestEnv } from '@apps/utils';
+import { Given, When, And, Then, Before } from '@badeball/cypress-cucumber-preprocessor';
 import customerLocator from '@locator/internal-dashboard/customer/customer-locator.json';
 
+const [customerName1, customerName2] = customerDataTestEnv(2);
 When('Click to Remove button', () => {
   cy.xpath(customerLocator.removeBtn).click();
 });
@@ -9,11 +11,11 @@ When('Enter random customer {string} to Name textbox', (keyword) => {
   let inputText;
   switch (keyword) {
     case 'customer 1':
-      inputText = dataTest.customerName1;
+      inputText = customerName1;
       break;
 
     case 'customer 2':
-      inputText = dataTest.customerName2;
+      inputText = customerName2;
       break;
 
     default:
@@ -60,11 +62,11 @@ Then('Verify random fullname {string} is displayed', (keyword) => {
   let inputText;
   switch (keyword) {
     case 'customer 1':
-      inputText = dataTest.customerName1;
+      inputText = customerName1;
       break;
 
     case 'customer 2':
-      inputText = dataTest.customerName2;
+      inputText = customerName2;
       break;
 
     default:

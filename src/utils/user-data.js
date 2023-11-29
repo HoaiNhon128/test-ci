@@ -13,15 +13,21 @@ import { faker } from '@faker-js/faker';
  * @property {string} name - The concatenated string of first and last names.
  */
 export const userDataTestEnv = ({ number = 1, key = 'auto' } = {}) => {
-	const dataTest = [...Array(number)].map((a, b, index) => {
-		const customerName = faker.person.fullName();
-		const sex = index % 2 === 0 ? 'female' : 'male';
-		const firstName = faker.person.firstName(sex);
-		const lastName = faker.person.lastName(sex);
-		const phoneNumber = faker.number.int({ min: 1000000000, max: 9999999999 });
-		const email = faker.internet.email({ provider: 'test.ai', firstName: `${key}-${firstName}`, lastName });
-		return { customerName, phoneNumber, email: email.toLowerCase(), name: `${firstName} ${lastName}` };
-	}, {});
+  const dataTest = [...Array(number)].map((_, index) => {
+    const customerName = faker.person.fullName();
+    const sex = index % 2 === 0 ? 'female' : 'male';
+    const firstName = faker.person.firstName(sex);
+    const lastName = faker.person.lastName(sex);
+    const phoneNumber = faker.number.int({ min: 1000000000, max: 9999999999 });
+    const email = faker.internet.email({ provider: 'test.ai', firstName: `${key}-${firstName}`, lastName });
+    return { customerName, phoneNumber, email: email.toLowerCase(), name: `${firstName} ${lastName}` };
+  });
 
-	return dataTest;
+  return dataTest;
+};
+
+export const customerDataTestEnv = (number) => {
+  return [...Array(number)].map((_, index) => {
+    return faker.person.fullName();
+  });
 };

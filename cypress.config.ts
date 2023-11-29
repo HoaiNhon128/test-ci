@@ -7,13 +7,11 @@ import path from 'path';
 import { getReportMetadata } from './scripts/get-report-metadata';
 const dotenv = require('dotenv').config();
 
-const cucumber = require('cypress-cucumber-preprocessor').default;
-
 async function setupNodeEvents(
   on: Cypress.PluginEvents,
   config: Cypress.PluginConfigOptions
 ): Promise<Cypress.PluginConfigOptions> {
-  config.env = dotenv.parsed;
+  config.env = dotenv?.parsed || {};
   // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
   await addCucumberPreprocessorPlugin(on, config);
   on(
@@ -27,7 +25,7 @@ async function setupNodeEvents(
             '@common': path.resolve(__dirname, 'src/common/index.ts'),
             '@config': path.resolve(__dirname, 'src/config/index.ts'),
             '@locator': path.resolve(__dirname, 'src/locator'),
-            '@apps/utils': path.resolve(__dirname, 'src/'),
+            '@apps': path.resolve(__dirname, 'src/'),
           },
           modules: [path.resolve(__dirname, 'src'), 'node_modules'],
         },
