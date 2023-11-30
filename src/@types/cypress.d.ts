@@ -6,7 +6,6 @@ declare namespace Cypress {
     waitApi: (alias: string) => void;
     getDataTestId: (id: string | number) => Cypress.Chainable<JQuery<HTMLElement>>;
     detectImageWithUrl: (url: string) => Cypress.Chainable<boolean>;
-    [key: string]: any;
     waitForElementVisible: (xpath: any, time?: any) => Cypress.Chainable<void>;
     waitForElementInvisible: (xpath: any, time?: any) => Cypress.Chainable<void>;
     clickToButton: (name: any) => Cypress.Chainable<void>;
@@ -27,5 +26,6 @@ declare namespace Cypress {
     verifyVisible: (...elements: args[]) => Cypress.Chainable<void>;
     uploadFile: (element: any, fileName: string) => Cypress.Chainable<void>;
     selectOptionFromDropdown: (dropdown, option) => Cypress.Chainable<void>;
+    [key: string]: any;
   }
 }

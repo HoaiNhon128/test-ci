@@ -1,4 +1,10 @@
-import { Given, When, And, Then, Before } from '@badeball/cypress-cucumber-preprocessor';
+import { loginInternalUser } from '@apps/utils';
+import { Given, When, And, Then, Before, AfterStep, After } from '@badeball/cypress-cucumber-preprocessor';
+
+When('Go to home page', () => {
+  cy.clearAllLocalStorage();
+  cy.visit('/');
+});
 
 When('Click to {string} button', (buttonName) => {
   cy.clickToButton(buttonName);

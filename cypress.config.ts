@@ -14,6 +14,7 @@ async function setupNodeEvents(
   config.env = dotenv?.parsed || {};
   // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
   await addCucumberPreprocessorPlugin(on, config);
+
   on(
     'file:preprocessor',
     preprocessor({
@@ -73,7 +74,6 @@ async function setupNodeEvents(
         console.log('Error');
       }
     });
-
     await afterRunHandler(config);
 
     getReportMetadata(results);
@@ -100,6 +100,5 @@ export default defineConfig({
   },
 
   video: false,
-
   fixturesFolder: 'src/cypress/fixtures',
 });

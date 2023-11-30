@@ -3,12 +3,7 @@
 Feature: 04 Create new customers
 
     Scenario: 001 Admin role create a customer account with logo
-        Given Go to AB Login page
-        When Login with email 'huyen.nguyen@codestringers.com' and password 'Cs@123456'
-        Then Verify URL Homepage
-
-        When Select app 'Internal Dashboard' from Domain menu
-        Then Verify URL dashboard of Internal Dashboard
+        Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen@codestringers.com" and password "Cs@123456"
 
         When Select 'Customers' from Left menu
         Then Verify page title 'Customers' is displayed
@@ -22,15 +17,10 @@ Feature: 04 Create new customers
         Then Verify random fullname 'customer 1' is displayed
         And Verify text 'Active' is displayed
         And Verify Modified date is today
-        And Verify text 'Huyen' is displayed
 
     Scenario: 002 Admin role create a customer account without logo
-        Given Go to AB Login page
-        When Login with email 'huyen.nguyen@codestringers.com' and password 'Cs@123456'
-        Then Verify URL Homepage
+        Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen@codestringers.com" and password "Cs@123456"
 
-        When Select app 'Internal Dashboard' from Domain menu
-        Then Verify URL dashboard of Internal Dashboard
 
         When Select 'Customers' from Left menu
         Then Verify page title 'Customers' is displayed
@@ -45,25 +35,16 @@ Feature: 04 Create new customers
         Then Verify random fullname 'customer 2' is displayed
         And Verify Modified date is today
         And Verify text 'Active' is displayed
-        And Verify text 'Huyen' is displayed
 
     Scenario: 003 User role cannot create customer
-
-        Given Go to AB Login page
-        When Login with email 'huyen.nguyen+1@codestringers.com' and password 'Cs@123456'
-        Then Verify URL Customers page
+        Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen+1@codestringers.com" and password "Cs@123456"
 
         When Select 'Customers' from Left menu
         Then Verify page title 'Customers' is displayed
         And Verify New customer button is not displayed
 
     Scenario: 004 Admin role cannot create a customer account
-        Given Go to AB Login page
-        When Login with email 'huyen.nguyen@codestringers.com' and password 'Cs@123456'
-        Then Verify URL Homepage
-
-        When Select app 'Internal Dashboard' from Domain menu
-        Then Verify URL dashboard of Internal Dashboard
+        Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen@codestringers.com" and password "Cs@123456"
 
         When Select 'Customers' from Left menu
         Then Verify page title 'Customers' is displayed

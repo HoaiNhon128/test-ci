@@ -2,8 +2,7 @@ const { Given, When, Then, Before } = require('@badeball/cypress-cucumber-prepro
 import loginLocator from '@locator/authentication/login-locator.json';
 
 Given('Go to AB Login page', () => {
-  cy.clearLocalStorage();
-  cy.visit('/');
+  cy.visit('/login');
 });
 
 When('Login with email {string} and password {string}', (email, password) => {

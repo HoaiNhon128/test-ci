@@ -1,11 +1,6 @@
 Feature: 05 Create new user
         Background:
-                Given Go to AB Login page
-                When Login with email 'huyen.nguyen@codestringers.com' and password 'Cs@123456'
-                Then Verify URL Homepage
-
-                When Select app 'Internal Dashboard' from Domain menu
-                Then Verify URL dashboard of Internal Dashboard
+                Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen@codestringers.com" and password "Cs@123456"
 
         Scenario: 001 Create an Aquabyte user account with ADMIN system role and isn't provide an associated phone number
 
@@ -24,7 +19,6 @@ Feature: 05 Create new user
         Scenario: 002 Create an Aquabyte user account with ADMIN system role and provide an associated phone number
                 When Click to 'New User' button
                 Then Verify modal title 'New User' is displayed
-
                 When Upload file 'adminImg.jpg' to Logo field
                 And Enter a random name and email for 'admin have a phone number' to textbox
                 And Enter a random phone number for 'admin have a phone number' to Phone Number textbox
@@ -38,7 +32,6 @@ Feature: 05 Create new user
         Scenario: 003 Create an Aquabyte user account with USER system role and isn't provide an associated phone number
                 When Click to 'New User' button
                 Then Verify modal title 'New User' is displayed
-
                 When Enter a random name and email for 'user without a phone number' to textbox
                 And Select access 'User' from 'System Role' dropdown
                 And Select access 'PLALI' 'LATI' 'WATI' from 'Access to Apps' dropdown
