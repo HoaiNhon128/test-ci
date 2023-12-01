@@ -1,81 +1,73 @@
-import { After, Before, Then, When } from '@badeball/cypress-cucumber-preprocessor';
-import { ProductType, ViewType, apiAlias, getAlias } from '@common';
-import { formatPathProduct, getDataApi, loginInternalUser, strings } from '@utils';
+import { Then, When } from '@badeball/cypress-cucumber-preprocessor';
+import { ProductType, ViewType, apiAlias } from '@common';
+import { getDataApi, strings } from '@utils';
 
 const movingSelector = 'div:has(>div.winch-new-circle-control) > div:nth-child(2)';
 
 const getButtonWinchClass = (placement) => {
-	return `.winch-control-${placement}-button > span`;
+  return `.winch-control-${placement}-button > span`;
 };
 
-const winchMoving = (placement, message, hold?) => {
-	cy.get(getButtonWinchClass(placement)).should('be.visible').trigger('mousedown', { buttons: 1 });
-	cy.get(movingSelector)
-		.should('be.visible')
-		.invoke('text')
-		.then((v) => {
-			expect(v.trim()).equal(message);
-		});
+const getWinchControlMessage = (placement) => {
+  let message = '';
+  switch (placement) {
+    case 'top':
+      message = strings.winchMovingUp;
+      break;
 
-	hold && cy.wait(hold);
+    case 'bottom':
+      message = strings.winchMovingDown;
+      break;
 
-	cy.get(getButtonWinchClass(placement)).should('be.visible').trigger('mouseup');
+    case 'left':
+      message = strings.winchMovingTowards;
+      break;
+    case 'right':
+      message = strings.winchMovingAway;
+      break;
+    default:
+      break;
+  }
+
+  return message.replace('...', '');
 };
-
-const getMessage = (placement) => {
-	let message = '';
-	switch (placement) {
-		case 'top':
-			message = strings.winchMovingUp;
-			break;
-
-		case 'bottom':
-			message = strings.winchMovingDown;
-			break;
-
-		case 'left':
-			message = strings.winchMovingTowards;
-			break;
-		case 'right':
-			message = strings.winchMovingAway;
-			break;
-		default:
-			break;
-	}
-
-	return message.replace('...', '');
-};
-
-Before({ tags: '@manualWinch' }, () => {
-	loginInternalUser();
-});
-
-After({ tags: '@manualWinch' }, () => {
-	// cy.get('[data-testid="test-mc"] > span').should('have.length.gt', 0).last().click({ force: true });
-});
 
 When('Go to camera details: {string} {string}', (siteId, penId) => {
-	Cypress.config('defaultCommandTimeout', 2000);
+  Cypress.config('defaultCommandTimeout', 2000);
 
-	cy.visit(`dashboard/cameras/details?siteId=${Number(siteId)}`);
+  cy.visit(`dashboard/cameras/details?siteId=${Number(siteId)}`);
 
-	cy.contains('P3').click();
+  cy.selectSidebarCollapse(ProductType.CAMERAS, ViewType.DETAIL);
+
+  cy.contains('P3').click();
+  cy.waitApi(apiAlias.WINCH_SETTING);
+  getDataApi(apiAlias.WINCH_SETTING).then((val) => {
+    cy.get('#rc-tabs-0-tab-manual').click();
+  });
 });
 
-Then('Should see winch', () => {
-	cy.waitApi(apiAlias.WINCH_CONTROL);
-
-	winchMoving('top', getMessage('top'));
+When('the user is holding the {string} button', (placement) => {
+  cy.get(getButtonWinchClass(placement)).should('be.visible').trigger('mousedown', { buttons: 1 });
 });
 
-Then('Should see winch2', () => {
-	cy.waitApi(apiAlias.WINCH_CONTROL);
-
-	winchMoving('bottom', getMessage('bottom'));
+Then('the {string} button in the Winch control should become active', function (placement) {
+  cy.get(getButtonWinchClass(placement)).should('have.class', 'text-gray0');
 });
 
-Then('Should see winch3', () => {
-	cy.waitApi(apiAlias.WINCH_CONTROL);
+Then('a message labeled {string} should be displayed', function (placement) {
+  cy.get(movingSelector)
+    .should('be.visible')
+    .invoke('text')
+    .then((v) => {
+      expect(v.trim()).equal(getWinchControlMessage(placement));
+    });
+});
 
-	winchMoving('left', getMessage('left'));
+When('the user cancels holding the {string} button after {string}', function (placement, time) {
+  cy.wait(Number(time));
+  cy.get(getButtonWinchClass(placement)).should('be.visible').trigger('mouseup');
+});
+
+Then('the {string} button in the Winch control should become inactive', (placement) => {
+  cy.get(getButtonWinchClass(placement)).should('have.class', 'text-gray8');
 });

@@ -29,6 +29,7 @@ const initTests = async () => {
   cy.intercept('/api/v2/liveImages/updatedTime?*').as(apiAlias.LIVE_IMAGES_UPDATED_TIME);
   cy.intercept('/api/v1/site/*/winch-metadata').as(apiAlias.WINCH_METADATA);
   cy.intercept('/api/v1/winch/*').as(apiAlias.WINCH_CONTROL);
+  cy.intercept('/api/v1/winches/**/setting').as(apiAlias.WINCH_SETTING);
 };
 
 beforeEach(() => {
