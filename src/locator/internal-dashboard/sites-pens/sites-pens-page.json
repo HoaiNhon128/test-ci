@@ -1,0 +1,6 @@
+{
+    "addSiteBtn": "//button[@class='ant-btn ant-btn-primary']//span[contains (text(),'ADD SITE')]",
+    "editBtn":  "//span[normalize-space()='Edit']",
+    "showActiveStiesOnlyChk": "//span[normalize-space()='Show active sites only']"
+    
+}

@@ -41,3 +41,7 @@ Then('Verify URL Login page', () => {
 Then('Verify URL Customers page', () => {
   cy.url().should('include', 'customers');
 });
+
+Then('Verify URL Site & Pens page', () => {
+  cy.url().should('include', 'sites');
+});

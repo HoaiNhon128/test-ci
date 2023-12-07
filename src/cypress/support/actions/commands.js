@@ -158,3 +158,7 @@ Cypress.Commands.add('waitForElementInvisible', (xpath, time) => {
 Cypress.Commands.add('waitForElementVisible', (xpath, time) => {
   cy.xpath(xpath, { timeout: time * 1000 }).should('exist');
 });
+
+Cypress.Commands.add('verifyErrorMessage', (name, message) => {
+  cy.checkExist("//*[@id='" + name + "_help']//*[normalize-space()='" + message + "']");
+});
