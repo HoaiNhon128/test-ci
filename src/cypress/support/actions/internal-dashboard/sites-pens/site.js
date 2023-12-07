@@ -34,6 +34,11 @@ Cypress.Commands.add('findSite', (siteName) => {
   });
   
 
+Cypress.Commands.add('openEditSite', (siteName) => {
+    cy.checkExist("//*[contains(text(),'" + siteName + "')]")
+    cy.clickToElement("//*[contains(text(),'" + siteName + "')]/parent::*/following-sibling::*//span[@class='anticon']");
+    cy.clickToElement(sitePageLocator.editBtn);
+});
 
 Cypress.Commands.add('openSiteMenu', (siteName) => {
   cy.clickToElement("//*[contains(text(),'" + siteName + "')]/parent::*/following-sibling::*//span[@class='anticon anticon-up']");
