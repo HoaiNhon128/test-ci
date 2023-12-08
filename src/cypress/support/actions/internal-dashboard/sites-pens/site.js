@@ -33,7 +33,6 @@ Cypress.Commands.add('findSite', (siteName) => {
     findOnPage();
   });
   
-
 Cypress.Commands.add('openEditSite', (siteName) => {
     cy.checkExist("//*[contains(text(),'" + siteName + "')]")
     cy.clickToElement("//*[contains(text(),'" + siteName + "')]/parent::*/following-sibling::*//span[@class='anticon']");

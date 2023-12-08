@@ -96,6 +96,13 @@ Feature: Add a new Site
                 And Click to "Update" button
                 Then Verify error message "The longitude must be a number." displayed on "longitude" field
 
+        Scenario: 12 Verify error message inactive a site which has at least one pen active
+                When Select "Demo site" site and open Edit modal
+                And Uncheck on Is Active checkbox
+                And Click to "Update" button
+                Then Verify error message "Site cannot be inactive -- at least one pen is active." displayed on "isActive" field
+
+
 
 
 
