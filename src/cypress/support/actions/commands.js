@@ -31,6 +31,10 @@ Cypress.Commands.add('verifyTitleModal', (title) => {
   cy.xpath("//*[@class='ant-modal-title' and contains(text(),'" + title + "')]").should('exist');
 });
 
+Cypress.Commands.add('verifyModalClosed', (title) => {
+  cy.xpath("//*[@class='ant-modal-title' and contains(text(),'" + title + "')]").should('not.exist');
+});
+
 Cypress.Commands.add('verifyConfirmModal', (title) => {
   cy.xpath("//*[@class='ant-modal-confirm-title' and contains(text(),'" + title + "')]").should('exist');
 });

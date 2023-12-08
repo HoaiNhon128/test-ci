@@ -30,6 +30,10 @@ Then('Verify modal title {string} is displayed', (title) => {
   cy.verifyTitleModal(title);
 });
 
+Then ('Verify modal {string} is closed', (title) => {
+  cy.verifyModalClosed(title)
+});
+
 Then('Verify URL Homepage', () => {
   cy.url().should('include', 'home');
 });

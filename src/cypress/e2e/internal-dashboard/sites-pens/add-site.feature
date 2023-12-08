@@ -6,6 +6,8 @@ Feature: Add a new Site
         Scenario: 01 Verify "New Site" modal
                 When Click to "ADD SITE" button
                 Then Verify modal title "New Site" is displayed
+                When Click to "Cancel" button
+                Then Verify modal "New Site" is closed
 
         Scenario: 02 Add a new site successfully
                 When Click to "ADD SITE" button
