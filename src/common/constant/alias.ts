@@ -8,6 +8,7 @@ export const apiAlias = {
   WINCH_CONTROL: 'WINCH_CONTROL',
   WINCH_METADATA: 'WINCH_METADATA',
   WINCH_SETTING: 'WINCH_SETTING',
+  WINCH_SCHEDULE: 'WINCH_SCHEDULE',
 };
 
 export const getAlias = <K extends keyof typeof apiAlias>(key: K | string): string => {

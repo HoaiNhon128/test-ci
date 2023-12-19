@@ -152,6 +152,7 @@ Then('{string} must be displayed when no pen is selected', (string: string) => {
 });
 
 Then('Current events will be displayed', () => {
+  cy.waitApi(apiAlias.CURRENT_EVENT);
   const bootstrap = async () => {
     const { userData, search, eventLogs } = await bootstrapDataApi(
       [{ alias: apiAlias.CURRENT_EVENT, key: 'eventLogs' }],

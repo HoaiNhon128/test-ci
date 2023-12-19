@@ -26,6 +26,8 @@ declare namespace Cypress {
     verifyVisible: (...elements: args[]) => Cypress.Chainable<void>;
     uploadFile: (element: any, fileName: string) => Cypress.Chainable<void>;
     selectOptionFromDropdown: (dropdown, option) => Cypress.Chainable<void>;
+    getWithPlaceholder: (placeholder: string) => Cypress.Chainable<JQuery<HTMLElement>>;
+    timePickerSelector: (time: string, type: 'hours' | 'minutes') => Cypress.Chainable<JQuery<HTMLElement>>;
     [key: string]: any;
   }
 }

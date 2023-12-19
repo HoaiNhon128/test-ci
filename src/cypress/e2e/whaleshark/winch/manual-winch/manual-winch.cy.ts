@@ -32,17 +32,19 @@ const getWinchControlMessage = (placement) => {
   return message.replace('...', '');
 };
 
-When('Go to camera details: {string} {string}', (siteId, penId) => {
-  Cypress.config('defaultCommandTimeout', 2000);
+When('Go to camera details: {string} {string} {string}', (siteId, penId, tab) => {
+  Cypress.config('defaultCommandTimeout', 5000);
 
-  cy.visit(`dashboard/cameras/details?siteId=${Number(siteId)}`);
+  cy.contains('Select site').click();
+
+  cy.contains('Demo site').click();
 
   cy.selectSidebarCollapse(ProductType.CAMERAS, ViewType.DETAIL);
 
   cy.contains('P3').click();
   cy.waitApi(apiAlias.WINCH_SETTING);
   getDataApi(apiAlias.WINCH_SETTING).then((val) => {
-    cy.get('#rc-tabs-0-tab-manual').click();
+    cy.get(`#rc-tabs-0-tab-${tab}`).click();
   });
 });
 

@@ -24,10 +24,7 @@ export const getDataApi = async (alias: string) => {
   const newAlias = alias.startsWith('@') ? alias : `@${alias}`;
   return new Promise<any>((resolve, reject) => {
     cy.get<Interception>(newAlias, { timeout: 40000 }).then((currentSubject) => {
-      if (currentSubject?.response?.statusCode < 400) {
-        return resolve(currentSubject.response.body);
-      }
-      return resolve(null);
+      return resolve(currentSubject?.response?.body);
     });
   });
 };
@@ -37,7 +34,6 @@ export const bootstrapDataApi = async (
   option?: { isUserData?: boolean; isSearch?: boolean }
 ) => {
   const promises = await Promise.all(params.map((item) => getDataApi(item.alias)));
-
   const result = params.reduce((prev, curr, index) => {
     prev[curr.key] = promises[index];
     return prev;

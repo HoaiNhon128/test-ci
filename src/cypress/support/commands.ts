@@ -25,6 +25,10 @@ Cypress.Commands.add('detectImageWithUrl', (url) => {
   });
 });
 
+Cypress.Commands.add('getWithPlaceholder', (placeholder) => {
+  return cy.get(`input[placeholder='${placeholder}']`);
+});
+
 Cypress.Commands.add('selectSidebarCollapse', (productCategory: ProductType, viewType: ViewType) => {
   const contentProductType = (productType) => {
     switch (productType) {
@@ -50,4 +54,26 @@ Cypress.Commands.add('selectSidebarCollapse', (productCategory: ProductType, vie
   cy.waitApi(apiAlias.GET_USER_DATA);
   cy.xpath(`${menuGroupPath}//span[contains(text(), 'Cameras')]`).click({ force: true });
   cy.xpath(viewPath).click({ force: true });
+});
+
+Cypress.Commands.add('timePickerSelector', (time, type) => {
+  const getPosition = () => {
+    switch (type) {
+      case 'hours':
+        return 1;
+      case 'minutes':
+        return 2;
+      default:
+        return 0;
+    }
+  };
+
+  const selector = `ul.ant-picker-time-panel-column:nth-of-type(${getPosition()}) li div.ant-picker-time-panel-cell-inner`;
+
+  return cy
+    .get(selector)
+    .contains(time)
+    .then((el) => {
+      return el.closest('li');
+    });
 });
