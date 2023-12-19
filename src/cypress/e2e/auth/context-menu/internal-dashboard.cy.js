@@ -6,7 +6,7 @@ When('Select {string} from Left menu', (name) => {
 });
 
 Then('Verify URL dashboard of WhaleShark', () => {
-  // cy.url().should('include', 'dashboard/power-bi/overview');
+  cy.url().should('include', 'dashboard');
 });
 
 Then('Verify URL dashboard of Internal Dashboard', () => {

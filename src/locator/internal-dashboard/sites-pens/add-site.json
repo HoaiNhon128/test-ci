@@ -1,0 +1,12 @@
+{
+    "nameTxt" : "//input[@placeholder='name']",
+    "isActiveChk": "//input[@name='isActive']",
+    "govermentSiteNumberTxt": "//input[@placeholder='government site number']",
+    "netSuiteIdTxt": "//input[@placeholder='net suite ID']",
+    "latitudeTxt": "//input[@placeholder='latitude']",
+    "longitudeTxt": "//input[@placeholder='longitude']",
+    "timezoneDrd": "//*[contains(text(),'Timezone')]/parent::*/following-sibling::*//*[@class='ant-select-selector']",
+    "companyDrd": "//*[contains(text(),'Company')]/parent::*/following-sibling::*//*[@class='ant-select-selector']",
+    "createBtn": "//button[@class='ant-btn ant-btn-primary']/span[text()='Create']",
+    "cancelBtn": "//button[@class='ant-btn ant-btn-default']/span[text()='Cancel']"
+}
