@@ -5,6 +5,7 @@
   "packageManager": "yarn@3.6.4",
   "scripts": {
     "test": "node scripts.js",
+    "build": "",
     "chrome-browser": "cypress run --browser chrome --e2e",
     "open": "cypress open"
   },
