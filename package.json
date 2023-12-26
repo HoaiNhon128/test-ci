@@ -65,7 +65,7 @@
       "output": "reports/reports.json"
     },
     "message": {
-      "enabled": false
+      "enabled": true
     }
   }
 }
