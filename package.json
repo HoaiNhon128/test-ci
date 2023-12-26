@@ -4,11 +4,10 @@
   "license": "MIT",
   "packageManager": "yarn@3.6.4",
   "scripts": {
-    "cy:run": "node scripts.js",
+    "test": "node scripts.js",
     "build": "tsc",
-    "chrome": "cypress run --browser chrome --e2e",
-    "open": "cypress open",
-    "start": "node index.js"
+    "chrome-browser": "cypress run --browser chrome --e2e",
+    "open": "cypress open"
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",
