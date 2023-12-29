@@ -11,8 +11,10 @@ RUN node -p "process.arch === 'arm64' ? 'Not downloading Chrome since we are on 
   dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \
   apt-get install -f -y && \
   rm -f /usr/src/google-chrome-stable_current_amd64.deb)
-# Set up the working directory
+
+
 WORKDIR /app
+
 
 # Copy app files
 COPY . .

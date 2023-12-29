@@ -1,13 +1,23 @@
-name: Chrome
+name: Cypress Tests
+
 on: push
+
 jobs:
-  chrome:
+  cypress-run:
     runs-on: ubuntu-22.04
-    name: E2E on Chrome
     steps:
-      - uses: actions/checkout@v4
-      - uses: isbang/compose-action@v1.5.1
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
         with:
-          image: cypress/base:16.16.0
-          compose-file: 'docker-compose.yml'
-          down-flags: '--volumes'
+          start: npm start
+          browser: chrome
+      - name: Save build folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: start
+          if-no-files-found: error
+          path: report
