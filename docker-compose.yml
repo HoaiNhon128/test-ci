@@ -1,6 +1,5 @@
-version: '3'
+version: '3.9'
 services:
   aquabyte:
     image: aquabute-e2e
     build: .
-    container_name: e2e

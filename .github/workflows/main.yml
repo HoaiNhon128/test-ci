@@ -1,18 +1,12 @@
-name: Cypress Tests using Cypress Docker Image
-
+name: Chrome
 on: push
-
 jobs:
-  cypress-run:
+  chrome:
     runs-on: ubuntu-22.04
-    container:
-      image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
-      options: --user 1001
+    name: E2E on Chrome
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
+      - uses: actions/checkout@v4
+      - uses: isbang/compose-action@v1.5.1
         with:
-          start: yarn test
-          browser: chrome
+          compose-file: 'docker-compose.yml'
+          down-flags: '--volumes'
