@@ -1,21 +1,12 @@
-name: Cypress Tests
-
+name: Chrome
 on: push
-
 jobs:
-  cypress-run:
+  chrome:
     runs-on: ubuntu-22.04
+    name: E2E on Chrome
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: 'Create env file'
-        run: |
-          echo "${{ secrets.TEST_CI }}" > .env
-          cat .env
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
+      - uses: actions/checkout@v4
+      - uses: isbang/compose-action@v1.5.1
         with:
-          build: npm run build
-          start: npm test
+          compose-file: 'docker-compose.yml'
+          down-flags: '--volumes'
