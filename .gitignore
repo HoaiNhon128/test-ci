@@ -5,5 +5,5 @@ node_modules
 cypress/*
 reports/*
 .DS_Store
-cucumber-messages.ndjson
+# cucumber-messages.ndjson
 .env
