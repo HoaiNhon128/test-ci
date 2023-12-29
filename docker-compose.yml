@@ -3,3 +3,4 @@ services:
   aquabyte:
     image: aquabute-e2e
     build: .
+    command: npx cypress run --browser chrome --e2e
