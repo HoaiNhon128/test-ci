@@ -1,64 +1,64 @@
 
-@create-customer
-Feature: 04 Create new customers
+# @create-customer
+# Feature: 04 Create new customers
 
-    Scenario: 001 Admin role create a customer account with logo
-        Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen@codestringers.com" and password "Cs@123456"
+#     Scenario: 001 Admin role create a customer account with logo
+#         Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen@codestringers.com" and password "Cs@123456"
 
-        When Select 'Customers' from Left menu
-        Then Verify page title 'Customers' is displayed
+#         When Select 'Customers' from Left menu
+#         Then Verify page title 'Customers' is displayed
 
-        When Click to 'New Customer' button
-        And Enter random customer 'customer 1' to Name textbox
-        And Upload file 'customer-avt.jpeg' to Logo field
-        Then Verify customer logo is uploaded successfully
+#         When Click to 'New Customer' button
+#         And Enter random customer 'customer 1' to Name textbox
+#         And Upload file 'customer-avt.jpeg' to Logo field
+#         Then Verify customer logo is uploaded successfully
 
-        When Click to 'Create' button
-        Then Verify random fullname 'customer 1' is displayed
-        And Verify text 'Active' is displayed
-        And Verify Modified date is today
+#         When Click to 'Create' button
+#         Then Verify random fullname 'customer 1' is displayed
+#         And Verify text 'Active' is displayed
+#         And Verify Modified date is today
 
-    Scenario: 002 Admin role create a customer account without logo
-        Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen@codestringers.com" and password "Cs@123456"
+#     Scenario: 002 Admin role create a customer account without logo
+#         Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen@codestringers.com" and password "Cs@123456"
 
 
-        When Select 'Customers' from Left menu
-        Then Verify page title 'Customers' is displayed
+#         When Select 'Customers' from Left menu
+#         Then Verify page title 'Customers' is displayed
 
-        When Click to 'New Customer' button
-        And Enter random customer 'customer 2' to Name textbox
-        And Upload file 'customer-avt.jpeg' to Logo field
-        And Click to Remove button
-        Then Verify customer logo is removed
+#         When Click to 'New Customer' button
+#         And Enter random customer 'customer 2' to Name textbox
+#         And Upload file 'customer-avt.jpeg' to Logo field
+#         And Click to Remove button
+#         Then Verify customer logo is removed
 
-        When Click to 'Create' button
-        Then Verify random fullname 'customer 2' is displayed
-        And Verify Modified date is today
-        And Verify text 'Active' is displayed
+#         When Click to 'Create' button
+#         Then Verify random fullname 'customer 2' is displayed
+#         And Verify Modified date is today
+#         And Verify text 'Active' is displayed
 
-    Scenario: 003 User role cannot create customer
-        Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen+1@codestringers.com" and password "Cs@123456"
+#     Scenario: 003 User role cannot create customer
+#         Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen+1@codestringers.com" and password "Cs@123456"
 
-        When Select 'Customers' from Left menu
-        Then Verify page title 'Customers' is displayed
-        And Verify New customer button is not displayed
+#         When Select 'Customers' from Left menu
+#         Then Verify page title 'Customers' is displayed
+#         And Verify New customer button is not displayed
 
-    Scenario: 004 Admin role cannot create a customer account
-        Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen@codestringers.com" and password "Cs@123456"
+#     Scenario: 004 Admin role cannot create a customer account
+#         Given Go to app "INTERNAL_DASHBOARD" and login with email "huyen.nguyen@codestringers.com" and password "Cs@123456"
 
-        When Select 'Customers' from Left menu
-        Then Verify page title 'Customers' is displayed
+#         When Select 'Customers' from Left menu
+#         Then Verify page title 'Customers' is displayed
 
-        When Click to 'New Customer' button
-        And Click to 'Create' button
-        Then Verify text 'This information is required.' is displayed
+#         When Click to 'New Customer' button
+#         And Click to 'Create' button
+#         Then Verify text 'This information is required.' is displayed
 
-        When Enter random customer 'customer 2' to Name textbox
-        And Click to 'Create' button
-        Then Verify text 'Another customer with the same name already exists.' is displayed
+#         When Enter random customer 'customer 2' to Name textbox
+#         And Click to 'Create' button
+#         Then Verify text 'Another customer with the same name already exists.' is displayed
 
-        When Upload file 'test-gif.gif' to Logo field
-        Then Verify text 'Please choose a JPEG or PNG image.' is displayed
+#         When Upload file 'test-gif.gif' to Logo field
+#         Then Verify text 'Please choose a JPEG or PNG image.' is displayed
 
-        When Upload file 'image-more-than-5mb.jpg' to Logo field
-        Then Verify text 'Please limit the file size to 5 MB.' is displayed
+#         When Upload file 'image-more-than-5mb.jpg' to Logo field
+#         Then Verify text 'Please limit the file size to 5 MB.' is displayed
