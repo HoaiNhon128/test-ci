@@ -13,11 +13,4 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          start: npm run test
           browser: chrome
-      - name: Save build folder
-        uses: actions/upload-artifact@v4
-        with:
-          name: start
-          if-no-files-found: error
-          path: report
