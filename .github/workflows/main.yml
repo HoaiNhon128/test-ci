@@ -10,3 +10,4 @@ jobs:
         with:
           compose-file: 'docker-compose.yml'
           down-flags: '--volumes'
+          run: npx cypress run
