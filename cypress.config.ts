@@ -68,12 +68,6 @@ async function setupNodeEvents(
 
   // on('file:preprocessor', cucumber());
 
-  on('before:run', () => {
-    const files = fs.readdirSync(path.join(__dirname, 'reports'));
-
-    console.log(files);
-  });
-
   on('after:run', async (results: any) => {
     await afterRunHandler(config);
 
