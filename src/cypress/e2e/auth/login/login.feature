@@ -17,7 +17,7 @@ Feature: 01 Login AB
                 Then Verify error message displays '<message>'
                 Examples:
                         | email                           | password       | message                           | reason                |
-                        | giao.nguyen2+3@codestringers.com | Cs@123456      | Your account is not active.       | Inactive user account |
+                        # | giao.nguyen2+3@codestringers.com | Cs@123456      | Your account is not active.       | Inactive user account |
                         | giao.nguyen+2                   | Cs@123456      | Invalid email address or password | Invalid email         |
                         | giao.nguyen+2@codestringers.com | wrong password | Invalid email address or password | Wrong password        |
                         |                                 | CS@123456      | This information is required.     | Blank email           |

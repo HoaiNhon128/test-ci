@@ -73,9 +73,6 @@ async function setupNodeEvents(
 
     getReportMetadata(results);
 
-    const files = fs.readdirSync(path.join(__dirname, 'reports'));
-
-    console.log('files', files);
     return results;
   });
 
@@ -96,6 +93,8 @@ export default defineConfig({
     pageLoadTimeout: 60000,
     video: false,
   },
+
+  projectId: '9emnng',
   video: false,
   fixturesFolder: 'src/cypress/fixtures',
 });
