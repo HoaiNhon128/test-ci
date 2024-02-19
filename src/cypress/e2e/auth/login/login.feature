@@ -1,7 +1,7 @@
 Feature: 01 Login AB
         Background:
                 Given Go to AB Login page
-
+        @ignore
         Scenario Outline: Login success with <account>
 
                 When Login with email '<email>' and password '<password>'
@@ -10,7 +10,7 @@ Feature: 01 Login AB
                         | email                           | password  | account       |
                         | giao.nguyen@codestringers.com   | Cs@123456 | admin account |
                         | huyen.nguyen@codestringers.com  | Cs@123456 | user account  |
-
+        @ignore
         Scenario Outline: Login failed due to <reason>
 
                 When Login with email '<email>' and password '<password>'

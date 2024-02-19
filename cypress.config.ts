@@ -93,7 +93,6 @@ export default defineConfig({
     pageLoadTimeout: 60000,
     video: false,
   },
-
   video: false,
   fixturesFolder: 'src/cypress/fixtures',
 });
