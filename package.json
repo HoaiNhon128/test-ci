@@ -7,7 +7,7 @@
     "build": "",
     "test": "cypress run --browser chrome --e2e --record",
     "open": "cypress open",
-    "test-ci": "cypress run --browser chrome --e2e --record --parallel --key=04466a88-5192-4c3c-94d5-a7bd9d2a53bf"
+    "test-ci": "cypress run --browser chrome --e2e --record --parallel --key 04466a88-5192-4c3c-94d5-a7bd9d2a53bf"
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",
