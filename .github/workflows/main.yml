@@ -18,9 +18,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
-          record: true
-          cache-key: 04466a88-5192-4c3c-94d5-a7bd9d2a53bf
-
+          start: yarn test-ci
       - name: Save build folder
         uses: actions/upload-artifact@v4
         with:

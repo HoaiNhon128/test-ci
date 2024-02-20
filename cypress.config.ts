@@ -69,9 +69,9 @@ async function setupNodeEvents(
   // on('file:preprocessor', cucumber());
 
   on('after:run', async (results: any) => {
-    await afterRunHandler(config);
+    // await afterRunHandler(config);
 
-    getReportMetadata(results);
+    // getReportMetadata(results);
 
     return results;
   });
