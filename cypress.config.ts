@@ -69,14 +69,9 @@ async function setupNodeEvents(
   // on('file:preprocessor', cucumber());
 
   on('after:run', async (results: any) => {
-    fs.rmdir(path.resolve(__dirname, 'reports'), (err) => {
-      if (err) {
-        console.log('Error');
-      }
-    });
-    await afterRunHandler(config);
+    // await afterRunHandler(config);
 
-    getReportMetadata(results);
+    // getReportMetadata(results);
 
     return results;
   });
@@ -99,6 +94,7 @@ export default defineConfig({
     video: false,
   },
 
+  projectId: '9emnng',
   video: false,
   fixturesFolder: 'src/cypress/fixtures',
 });
