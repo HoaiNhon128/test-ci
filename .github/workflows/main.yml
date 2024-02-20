@@ -17,7 +17,8 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
-          start: yarn test
+          start: yarn test-ci --key=04466a88-5192-4c3c-94d5-a7bd9d2a53bf
+          parallel: true
       - name: Save build folder
         uses: actions/upload-artifact@v4
         with:
